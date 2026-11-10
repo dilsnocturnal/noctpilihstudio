@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>NOCT.PILIH</title>
+<style>
+:root{--bg:#f4f3ef;--fg:#111;--mut:#777;--card:#fff;--line:#e2e0d9;--acc:#111;--on:#d7ff3a;--on-fg:#111;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b0b0c;--fg:#f2f2ee;--mut:#8b8b86;--card:#151517;--line:#26262a;--acc:#f2f2ee}}
+:root[data-theme="dark"]{--bg:#0b0b0c;--fg:#f2f2ee;--mut:#8b8b86;--card:#151517;--line:#26262a;--acc:#f2f2ee}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+button,input{font:inherit;color:inherit}
+.top{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid var(--line);position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);z-index:5}
+.logo{font-weight:800;letter-spacing:.14em;font-size:15px}.logo i{font-style:normal;background:var(--on);color:var(--on-fg);padding:0 4px;margin-left:2px}
+.btn{border:1px solid var(--fg);background:transparent;padding:10px 16px;cursor:pointer;font-weight:600;letter-spacing:.02em;border-radius:2px}
+.btn.p{background:var(--on);color:var(--on-fg);border-color:var(--on)}.btn.d{background:var(--fg);color:var(--bg)}
+.btn.s{padding:7px 12px;font-size:13px}.btn:disabled{opacity:.4;cursor:not-allowed}
+.wrap{display:grid;grid-template-columns:260px 1fr;min-height:calc(100vh - 56px)}
+.side{border-right:1px solid var(--line);padding:16px}
+.pi{padding:12px;border:1px solid var(--line);background:var(--card);margin-bottom:8px;cursor:pointer;border-radius:2px}
+.pi.on{border-color:var(--fg)}.pi b{display:block}.pi small{color:var(--mut)}
+.main{padding:24px;min-width:0}
+h1{margin:0;font-size:28px;letter-spacing:-.02em}.mut{color:var(--mut)}
+.stats{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}
+.st{border:1px solid var(--line);background:var(--card);padding:12px 16px;min-width:130px;border-radius:2px}
+.st b{display:block;font-size:24px}
+.live{display:inline-block;width:8px;height:8px;border-radius:50%;background:#2ecc71;margin-right:6px;animation:pl 1.6s infinite}
+@keyframes pl{50%{opacity:.25}}
+.box{border:1px dashed var(--fg);padding:14px;margin:0 0 18px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.box input{flex:1;min-width:200px;padding:10px;border:1px solid var(--line);background:var(--card);border-radius:2px}
+.bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.grid{columns:3 160px;column-gap:10px}
+.ph{position:relative;break-inside:avoid;margin-bottom:10px;cursor:pointer;background:var(--card);overflow:hidden}
+.ph img{width:100%;display:block;transition:transform .3s}.ph:hover img{transform:scale(1.02)}
+.ph .n{position:absolute;left:6px;bottom:6px;background:rgba(0,0,0,.65);color:#fff;font-size:11px;padding:2px 6px;letter-spacing:.06em}
+.ph .h{position:absolute;right:6px;top:6px;width:36px;height:36px;border-radius:50%;border:0;background:rgba(0,0,0,.45);color:#fff;font-size:18px;cursor:pointer}
+.ph.sel{outline:3px solid var(--on);outline-offset:-3px}.ph.sel .h{background:var(--on);color:#111}
+.ph.sel::after{content:"";position:absolute;inset:0;background:rgba(215,255,58,.12);pointer-events:none}
+.empty{border:1px dashed var(--line);padding:50px 20px;text-align:center;color:var(--mut)}
+.mod{position:fixed;inset:0;background:rgba(0,0,0,.7);display:flex;align-items:center;justify-content:center;z-index:20;padding:16px}
+.mc{background:var(--bg);padding:22px;max-width:460px;width:100%;max-height:85vh;overflow:auto;border-radius:3px}
+.mc label{display:block;margin:12px 0 4px;font-size:13px;color:var(--mut)}
+.mc input{width:100%;padding:10px;border:1px solid var(--line);background:var(--card)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}.chips span{background:var(--on);color:#111;padding:3px 8px;font-size:12px;font-weight:700}
+.lb{position:fixed;inset:0;background:#000;z-index:15;display:flex;align-items:center;justify-content:center}
+.lb img{max-width:100%;max-height:82vh}.lb .c{position:absolute;color:#fff;background:rgba(255,255,255,.14);border:0;width:46px;height:46px;border-radius:50%;font-size:20px;cursor:pointer}
+.cbar{position:fixed;left:0;right:0;bottom:0;padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px));background:var(--bg);border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:10px;z-index:6}
+.tt{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:var(--fg);color:var(--bg);padding:10px 16px;z-index:30;border-radius:2px}
+.hero{padding:34px 20px 10px;max-width:900px;margin:0 auto}.hero h1{font-size:34px}
+.cw{max-width:1100px;margin:0 auto;padding:10px 20px 110px}
+.ok{max-width:480px;margin:12vh auto;text-align:center;padding:20px}
+@media(max-width:760px){.wrap{grid-template-columns:1fr}.side{border-right:0;border-bottom:1px solid var(--line)}.main{padding:16px}h1{font-size:23px}}
+</style></head><body><div id="app"></div>
+<script>
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const num=i=>"IMG-"+String(i+1).padStart(3,"0");
+let db=null,assets=null,dl=null,P=[],PK={},SB={},cur=null,only=false,lb=null,loaded=false;
+const CID=(location.hash.match(/^#c-([a-z0-9]+)$/)||[])[1];
+const base=()=>location.href.split("#")[0];
+const link=p=>base()+"#c-"+p.id;
+function toast(t){const e=document.createElement("div");e.className="tt";e.textContent=t;document.body.appendChild(e);setTimeout(()=>e.remove(),2200)}
+function modal(h){const m=document.createElement("div");m.className="mod";m.innerHTML='<div class="mc">'+h+'</div>';m.addEventListener("click",e=>{if(e.target===m)m.remove()});document.body.appendChild(m);return m}
+const picked=pid=>PK[pid]||new Set();
+const pr=()=>P.find(p=>p.id===(CID||cur));
+
+async function init(){
+  render();
+  try{db=await claude.use("db");assets=await claude.use("assets");dl=await claude.use("downloads")}catch(e){}
+  if(!db){loaded=true;render();return}
+  const t=setTimeout(()=>{loaded=true;render()},10000);
+  db.collection("projects").onSnapshot(s=>{P=s.docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>(b.at||0)-(a.at||0));if(!cur&&P[0])cur=P[0].id;loaded=true;clearTimeout(t);render()});
+  db.collection("picks").onSnapshot(s=>{PK={};s.docs.forEach(d=>{const x=d.data();(PK[x.pid]=PK[x.pid]||new Set()).add(x.photoId)});render()});
+  db.collection("subs").onSnapshot(s=>{SB={};s.docs.forEach(d=>SB[d.id]=d.data());render()});
+}
+function render(){
+  const keep=window.scrollY;
+  $("#app").innerHTML=CID?clientView():studioView();
+  bind();window.scrollTo(0,keep);
+}
+/* ---------- STUDIO ---------- */
+function studioView(){
+  const p=pr();
+  let h='<div class="top"><div class="logo">NOCT<i>.PILIH</i></div><button class="btn p" data-a="new">+ Proyek Baru</button></div>';
+  if(!db&&loaded)return h+'<div class="empty" style="margin:20px">Penyimpanan realtime tidak tersedia di tampilan ini. Buka halaman lewat claude.ai dan masuk ke akun Anda.</div>';
+  if(!loaded)return h+'<div class="empty" style="margin:20px">Memuat studio…</div>';
+  if(!P.length)return h+'<div class="empty" style="margin:20px"><h1>Studio kamu masih kosong</h1><p>Buat proyek pertama, upload foto, lalu kirim link ke client.</p><button class="btn p" data-a="new">+ Buat Proyek Pertama</button></div>';
+  h+='<div class="wrap"><div class="side">'+P.map(x=>`<div class="pi ${x.id===p?.id?"on":""}" data-pid="${x.id}"><b>${esc(x.name)}</b><small>${esc(x.client)} · ${picked(x.id).size}/${x.max} dipilih${SB[x.id]?" · ✓ dikirim":""}</small></div>`).join("")+'</div><div class="main">';
+  if(p){
+    const ph=p.photos||[],ps=picked(p.id),sub=SB[p.id];
+    h+=`<h1>${esc(p.name)}</h1><div class="mut">Client: ${esc(p.client)}</div>
+    <div class="stats"><div class="st"><span class="mut"><span class="live"></span>Dipilih (live)</span><b>${ps.size} / ${p.max}</b></div>
+    <div class="st"><span class="mut">Foto</span><b>${ph.length}</b></div>
+    <div class="st"><span class="mut">Status</span><b>${sub?"Terkirim ✓":"Menunggu"}</b></div></div>
+    <div class="box"><input readonly value="${esc(link(p))}" id="lk"><button class="btn d" data-a="copy">Salin Link</button><button class="btn p" data-a="wa">Kirim via WhatsApp</button><button class="btn" data-a="prev">Lihat sbg Client</button></div>
+    <div class="bar"><button class="btn d" data-a="up">+ Upload Foto</button><input type="file" id="fi" accept="image/*" multiple hidden>
+    <button class="btn" data-a="only">${only?"Tampilkan semua":"Hanya yang dipilih"}</button>
+    <button class="btn" data-a="csv" ${ps.size?"":"disabled"}>Unduh Daftar (CSV)</button>
+    ${sub?'<button class="btn" data-a="reopen">Buka Kunci Pilihan</button>':""}
+    <button class="btn" data-a="del">Hapus Proyek</button></div>`;
+    const list=ph.map((f,i)=>({f,i})).filter(x=>!only||ps.has(x.f.id));
+    h+=list.length?'<div class="grid">'+list.map(({f,i})=>`<div class="ph ${ps.has(f.id)?"sel":""}"><img loading="lazy" src="${f.url}" alt=""><span class="n">${num(i)}</span>${ps.has(f.id)?'<span class="h" style="display:grid;place-items:center">♥</span>':""}</div>`).join("")+"</div>":`<div class="empty">${ph.length?"Belum ada foto yang dipilih client.":"Belum ada foto. Klik “Upload Foto”."}</div>`;
+  }
+  return h+"</div></div>";
+}
+/* ---------- CLIENT ---------- */
+function clientView(){
+  if(!db&&loaded)return '<div class="ok"><h1>Link belum bisa dibuka</h1><p class="mut">Masuk ke akun dulu agar pilihan tersimpan.</p></div>';
+  if(!loaded)return '<div class="ok mut">Memuat galeri…</div>';
+  const p=pr();if(!p)return '<div class="ok"><h1>Galeri tidak ditemukan</h1><p class="mut">Minta link baru ke fotografer.</p></div>';
+  const ps=picked(p.id),sub=SB[p.id],ph=p.photos||[];
+  if(sub)return `<div class="ok"><div class="logo">NOCT<i>.PILIH</i></div><h1 style="margin-top:28px">Terima kasih, ${esc(p.client)}!</h1><p>${sub.count} foto sudah dikirim ke fotografer.</p><p class="mut">Kode: ${esc(sub.ref)}</p></div>`;
+  let h=`<div class="top"><div class="logo">NOCT<i>.PILIH</i></div><span class="mut">${esc(p.client)}</span></div><div class="hero"><h1>${esc(p.name)}</h1><p class="mut">Ketuk ♥ pada foto favoritmu. Pilih maksimal ${p.max} foto, lalu tekan “Kirim Pilihan”.</p></div><div class="cw"><div class="grid">`;
+  h+=ph.map((f,i)=>`<div class="ph ${ps.has(f.id)?"sel":""}" data-open="${i}"><img loading="lazy" src="${f.url}" alt=""><span class="n">${num(i)}</span><button class="h" data-heart="${f.id}">${ps.has(f.id)?"♥":"♡"}</button></div>`).join("")+"</div></div>";
+  h+=`<div class="cbar"><b>DIPILIH: ${ps.size} / ${p.max}</b><button class="btn p" data-a="submit" ${ps.size?"":"disabled"}>KIRIM PILIHAN</button></div>`;
+  if(lb!==null&&ph[lb]){const f=ph[lb];h+=`<div class="lb"><button class="c" data-a="x" style="top:14px;right:14px">✕</button><button class="c" data-a="pv" style="left:10px">‹</button><img src="${f.url}" alt=""><button class="c" data-a="nx" style="right:10px">›</button><button class="btn ${ps.has(f.id)?"p":""}" data-heart="${f.id}" style="position:absolute;bottom:20px;background:${ps.has(f.id)?"":"#fff"};color:#111">${num(lb)} · ${ps.has(f.id)?"♥ Dipilih":"♡ Pilih"}</button></div>`}
+  return h;
+}
+async function heart(id){
+  const p=pr(),ps=picked(p.id),key=p.id+"_"+id;
+  try{
+    if(ps.has(id)){await db.doc("picks/"+key).delete()}
+    else{if(ps.size>=p.max)return toast("Batas "+p.max+" foto tercapai");await db.doc("picks/"+key).set({pid:p.id,photoId:id,at:Date.now()})}
+  }catch(e){toast("Gagal menyimpan. Coba lagi.")}
+}
+/* ---------- ACTIONS ---------- */
+function bind(){
+  document.querySelectorAll("[data-pid]").forEach(e=>e.onclick=()=>{cur=e.dataset.pid;render()});
+  document.querySelectorAll("[data-heart]").forEach(e=>e.onclick=ev=>{ev.stopPropagation();heart(e.dataset.heart)});
+  document.querySelectorAll("[data-open]").forEach(e=>e.onclick=()=>{lb=+e.dataset.open;render()});
+  document.querySelectorAll("[data-a]").forEach(e=>e.onclick=()=>act(e.dataset.a));
+  const fi=$("#fi");if(fi)fi.onchange=()=>upload([...fi.files]);
+}
+async function act(a){
+  const p=pr(),n=p?.photos?.length||0;
+  if(a==="new")return newProj();
+  if(a==="copy"){try{await navigator.clipboard.writeText(link(p));toast("Link disalin")}catch(e){$("#lk").select();toast("Tekan Salin (Ctrl+C)")}}
+  if(a==="wa"){const m=`Halo ${p.client},\n\nGaleri foto kamu sudah siap.\nBuka link berikut untuk melihat dan memilih foto favoritmu:\n\n${link(p)}\n\nMaksimal pilihan: ${p.max} foto.\n\nTerima kasih.`;window.open((p.wa?"https://wa.me/"+p.wa:"https://wa.me/")+"?text="+encodeURIComponent(m),"_blank")}
+  if(a==="prev")window.open(link(p),"_blank");
+  if(a==="up")$("#fi").click();
+  if(a==="only"){only=!only;render()}
+  if(a==="csv"){const rows=["Nomor,Nama File"];(p.photos||[]).forEach((f,i)=>{if(picked(p.id).has(f.id))rows.push(num(i)+',"'+f.name.replace(/"/g,'""')+'"')});if(dl)try{await dl.save({filename:p.name+"-pilihan.csv",data:rows.join("\n")})}catch(e){}else toast("Unduhan tidak tersedia")}
+  if(a==="reopen"){await db.doc("subs/"+p.id).delete();toast("Pilihan dibuka kembali")}
+  if(a==="del"){const m=modal(`<h3>Hapus proyek?</h3><p class="mut">Proyek “${esc(p.name)}” dan pilihannya akan dihapus.</p><button class="btn d" id="y">Ya, hapus</button> <button class="btn" id="n">Batal</button>`);m.querySelector("#n").onclick=()=>m.remove();m.querySelector("#y").onclick=async()=>{await db.doc("projects/"+p.id).delete();for(const id of picked(p.id))await db.doc("picks/"+p.id+"_"+id).delete();await db.doc("subs/"+p.id).delete().catch(()=>{});cur=null;m.remove()}}
+  if(a==="x"){lb=null;render()}
+  if(a==="pv"){lb=(lb-1+n)%n;render()}
+  if(a==="nx"){lb=(lb+1)%n;render()}
+  if(a==="submit")return submit();
+}
+function newProj(){
+  const m=modal(`<h3>Proyek Baru</h3><label>Nama proyek</label><input id="a" placeholder="Prewedding Rina & Dimas"><label>Nama client</label><input id="b"><label>Maksimal foto dipilih</label><input id="c" type="number" value="30" min="1"><label>No. WhatsApp client (opsional, mis. 62812…)</label><input id="d"><p><button class="btn p" id="ok">Buat Proyek</button></p>`);
+  m.querySelector("#ok").onclick=async()=>{const name=m.querySelector("#a").value.trim(),client=m.querySelector("#b").value.trim(),max=+m.querySelector("#c").value;
+    if(!name||!client||max<1)return toast("Lengkapi nama, client, dan maksimal");
+    const id="p"+Math.random().toString(36).slice(2,8);
+    try{await db.doc("projects/"+id).set({name,client,max,wa:m.querySelector("#d").value.replace(/\D/g,""),photos:[],at:Date.now()});cur=id;m.remove()}catch(e){toast("Gagal membuat proyek")}};
+}
+async function upload(files){
+  const p=pr();if(!assets)return toast("Upload belum tersedia");
+  const add=[];toast("Mengunggah "+files.length+" foto…");
+  for(const f of files){try{const r=await assets.upload(f);add.push({id:"f"+Math.random().toString(36).slice(2,8),url:r.url,name:f.name})}catch(e){toast("Gagal: "+f.name)}}
+  if(add.length){await db.doc("projects/"+p.id).update({photos:[...(p.photos||[]),...add]});toast(add.length+" foto ditambahkan")}
+}
+function submit(){
+  const p=pr(),ps=picked(p.id),idx=(p.photos||[]).map((f,i)=>ps.has(f.id)?num(i):null).filter(Boolean);
+  const m=modal(`<h3>Kirim ${idx.length} foto?</h3><div class="chips">${idx.map(x=>"<span>"+x+"</span>").join("")}</div><p class="mut">Setelah dikirim, pilihan terkunci.</p><button class="btn p" id="y">Ya, Kirim</button> <button class="btn" id="n">Kembali</button>`);
+  m.querySelector("#n").onclick=()=>m.remove();
+  m.querySelector("#y").onclick=async()=>{try{await db.doc("subs/"+p.id).set({count:idx.length,nums:idx,at:Date.now(),ref:"SUB-"+Math.random().toString(36).slice(2,8).toUpperCase()});m.remove()}catch(e){toast("Gagal mengirim")}};
+}
+addEventListener("keydown",e=>{if(lb===null)return;if(e.key==="Escape")act("x");if(e.key==="ArrowRight")act("nx");if(e.key==="ArrowLeft")act("pv")});
+addEventListener("hashchange",()=>location.reload());
+init();
+</script></body></html>
